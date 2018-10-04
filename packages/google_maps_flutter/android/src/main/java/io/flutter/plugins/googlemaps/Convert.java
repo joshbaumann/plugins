@@ -40,7 +40,7 @@ class Convert {
               FlutterMain.getLookupKeyForAsset(toString(data.get(1)), toString(data.get(2))));
         }
       case "fromBytes":
-        if(data.size() == 2){
+        if (data.size() == 2) {
           Bitmap bitmap = toBitmap(data.get(1));
           return BitmapDescriptorFactory.fromBitmap(bitmap);
         }
@@ -162,8 +162,8 @@ class Convert {
     return (int) toFractionalPixels(o, density);
   }
 
-  static Bitmap toBitmap(Object o){
-    byte[] bmpData = (byte[])o;
+  static Bitmap toBitmap(Object o) {
+    byte[] bmpData = (byte[]) o;
     Bitmap bitmap = BitmapFactory.decodeByteArray(bmpData, 0, bmpData.length);
     return bitmap;
   }
