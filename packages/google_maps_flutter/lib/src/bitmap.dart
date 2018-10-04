@@ -43,6 +43,10 @@ class BitmapDescriptor {
     }
   }
 
+  static BitmapDescriptor fromBytes(Uint8List byteData) {
+    return BitmapDescriptor._(<dynamic>['fromBytes', byteData]);
+  }
+
   final dynamic _json;
 
   dynamic _toJson() => _json;
