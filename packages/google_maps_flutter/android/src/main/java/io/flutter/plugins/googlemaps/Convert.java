@@ -43,8 +43,9 @@ class Convert {
         if (data.size() == 2) {
           Bitmap bitmap = toBitmap(data.get(1));
           return BitmapDescriptorFactory.fromBitmap(bitmap);
+        } else {
+          return BitmapDescriptorFactory.defaultMarker();
         }
-        break;
       default:
         throw new IllegalArgumentException("Cannot interpret " + o + " as BitmapDescriptor");
     }
