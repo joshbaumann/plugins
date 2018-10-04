@@ -44,6 +44,7 @@ class Convert {
           Bitmap bitmap = toBitmap(data.get(1));
           return BitmapDescriptorFactory.fromBitmap(bitmap);
         }
+        break;
       default:
         throw new IllegalArgumentException("Cannot interpret " + o + " as BitmapDescriptor");
     }
