@@ -430,8 +430,8 @@ static void interpretMarkerOptions(id json, id<FLTGoogleMapMarkerOptionsSink> si
       } else {
         CGFloat hue = (iconData.count == 1) ? 0.0f : toDouble(iconData[1]);
         image = [GMSMarker markerImageWithColor:[UIColor colorWithHue:hue / 360.0
-                                                            saturation:1.0
-                                                            brightness:0.7
+                                                           saturation:1.0
+                                                           brightness:0.7
                                                                 alpha:1.0]];
       }
     }
