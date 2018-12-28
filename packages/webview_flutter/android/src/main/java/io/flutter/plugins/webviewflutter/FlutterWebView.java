@@ -1,14 +1,13 @@
 package io.flutter.plugins.webviewflutter;
 
-import static io.flutter.plugin.common.MethodChannel.MethodCallHandler;
-import static io.flutter.plugin.common.MethodChannel.Result;
-
 import android.content.Context;
 import android.view.View;
 import android.webkit.WebView;
 import io.flutter.plugin.common.BinaryMessenger;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
+import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
+import io.flutter.plugin.common.MethodChannel.Result;
 import io.flutter.plugin.platform.PlatformView;
 import java.util.Map;
 
@@ -42,6 +41,18 @@ public class FlutterWebView implements PlatformView, MethodCallHandler {
       case "updateSettings":
         updateSettings(methodCall, result);
         break;
+      case "canGoBack":
+        canGoBack(methodCall, result);
+        break;
+      case "canGoForward":
+        canGoForward(methodCall, result);
+        break;
+      case "goBack":
+        goBack(methodCall, result);
+        break;
+      case "goForward":
+        goForward(methodCall, result);
+        break;
       default:
         result.notImplemented();
     }
@@ -50,6 +61,28 @@ public class FlutterWebView implements PlatformView, MethodCallHandler {
   private void loadUrl(MethodCall methodCall, Result result) {
     String url = (String) methodCall.arguments;
     webView.loadUrl(url);
+    result.success(null);
+  }
+
+  private void canGoBack(MethodCall methodCall, Result result) {
+    result.success(webView.canGoBack());
+  }
+
+  private void canGoForward(MethodCall methodCall, Result result) {
+    result.success(webView.canGoForward());
+  }
+
+  private void goBack(MethodCall methodCall, Result result) {
+    if (webView.canGoBack()) {
+      webView.goBack();
+    }
+    result.success(null);
+  }
+
+  private void goForward(MethodCall methodCall, Result result) {
+    if (webView.canGoForward()) {
+      webView.goForward();
+    }
     result.success(null);
   }
 
