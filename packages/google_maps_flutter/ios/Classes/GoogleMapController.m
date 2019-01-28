@@ -436,6 +436,17 @@ static void interpretMarkerOptions(id json, id<FLTGoogleMapMarkerOptionsSink> si
         image = [UIImage imageNamed:[registrar lookupKeyForAsset:iconData[1]
                                                      fromPackage:iconData[2]]];
       }
+    } else if ([iconData[0] isEqualToString:@"fromBytes"]) {
+      if (iconData.count == 2) {
+        FlutterStandardTypedData* byteData = iconData[1];
+        image = [UIImage imageWithData:[byteData data]];
+      } else {
+        CGFloat hue = (iconData.count == 1) ? 0.0f : toDouble(iconData[1]);
+        image = [GMSMarker markerImageWithColor:[UIColor colorWithHue:hue / 360.0
+                                                           saturation:1.0
+                                                           brightness:0.7
+                                                                alpha:1.0]];
+      }
     }
     [sink setIcon:image];
   }
